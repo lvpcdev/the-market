@@ -1,6 +1,7 @@
 package dao;
 
 import model.entities.Product;
+import utils.FIleUtils;
 
 
 import java.io.*;
@@ -14,28 +15,9 @@ public class ProductDao {
     private static final String filePath = "C:\\temp\\product.txt";
 
 
-    public void verificator() {
-        File directorie = new File(dirPath);
-        File file = new File(filePath);
-
-        try {
-            if (!directorie.exists()) {
-                directorie.mkdir();
-            }
-
-            if (!file.exists()) {
-                file.createNewFile();
-
-            }
-        } catch (IOException e) {
-            System.out.println("Erro ao criar arquivo: " + e.getMessage());
-
-        }
-    }
-
 
     public void create(Product product) {
-        verificator();
+        FIleUtils.verificator(dirPath,filePath);
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, true))) {
 
@@ -51,7 +33,7 @@ public class ProductDao {
     }
 
     public Product read(Integer code) {
-        verificator();
+        FIleUtils.verificator(dirPath,filePath);
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
 
@@ -75,6 +57,8 @@ public class ProductDao {
 
 
     public Set<Product> findAll() {
+        FIleUtils.verificator(dirPath,filePath);
+
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
 
             Set<Product> products = new TreeSet<>();
@@ -94,6 +78,8 @@ public class ProductDao {
     }
 
     public boolean productExists(int code) {
+        FIleUtils.verificator(dirPath,filePath);
+
         return findAll().stream()
                 .anyMatch(p -> p.getCode().equals(code));
     }

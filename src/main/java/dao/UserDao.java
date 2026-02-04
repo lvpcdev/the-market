@@ -2,6 +2,7 @@ package dao;
 
 import model.entities.User;
 import model.enums.UserType;
+import utils.FIleUtils;
 
 import java.io.*;
 import java.util.Set;
@@ -13,27 +14,8 @@ public class UserDao {
     private static final String filePath = "C:\\temp\\user.txt";
 
 
-    public void verificator() {
-        File directorie = new File(dirPath);
-        File file = new File(filePath);
-
-        try {
-            if (!directorie.exists()) {
-                directorie.mkdir();
-            }
-
-            if (!file.exists()) {
-                file.createNewFile();
-
-            }
-        } catch (IOException e) {
-            System.out.println("Erro ao criar arquivo: " + e.getMessage());
-
-        }
-    }
-
     public void create(User user) {
-        verificator();
+        FIleUtils.verificator(dirPath,filePath);
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, true))) {
 
@@ -49,7 +31,7 @@ public class UserDao {
     }
 
     public User read(String cpf) {
-        verificator();
+        FIleUtils.verificator(dirPath,filePath);
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
 
@@ -72,6 +54,8 @@ public class UserDao {
 
 
     public Set<User> findAll() {
+        FIleUtils.verificator(dirPath,filePath);
+
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
 
             Set<User> users = new TreeSet<>();
@@ -91,6 +75,8 @@ public class UserDao {
     }
 
     public boolean userExist(String cpf) {
+        FIleUtils.verificator(dirPath,filePath);
+
         return findAll().stream()
                 .anyMatch(u -> u.getCpf().equals(cpf));
     }
