@@ -20,7 +20,7 @@ public class UserController {
                     "\n2)Realizar cadastro" +
                     "\n3)Sair");
 
-            option = sc.nextInt();
+            option = Integer.parseInt(sc.nextLine());
 
             switch (option) {
                 case 1 -> {
@@ -28,6 +28,7 @@ public class UserController {
                 }
                 case 2 -> registerController.register();
                 case 3 -> System.out.println("Saindo do sistema");
+                default -> System.out.println("Erro: numero digitado inválido");
             }
 
         } while (option != 3);

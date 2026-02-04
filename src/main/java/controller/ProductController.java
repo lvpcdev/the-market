@@ -14,19 +14,18 @@ public class ProductController {
 
     public void registerProduct(User user) {
         System.out.println("Insira o código do produto que deseja registrar:");
-        int code = sc.nextInt();
+        int code = Integer.parseInt(sc.nextLine());
         System.out.println("Insira o nome do produto que deseja registrar:");
-        sc.nextLine();
         String name = sc.nextLine();
         System.out.println("Insira o preço do produto que deseja registrar:");
-        double price = sc.nextDouble();
+        double price = Double.parseDouble(sc.nextLine());
 
         Product product = new Product(name,price,code);
 
         System.out.println("Deseja cadastrar o produto abaixo? (s/n)");
         System.out.println(product);
 
-        char option = sc.next().charAt(0);
+        char option = sc.nextLine().charAt(0);
 
         if (String.valueOf(option).equalsIgnoreCase("s")) {
             productService.registerProduct(user,product);
@@ -35,6 +34,7 @@ public class ProductController {
 
 
     public void listAllProducts() {
-        System.out.println(productService.listAll());
+        productService.listAll().forEach(System.out::println);
+        System.out.println();
     }
 }

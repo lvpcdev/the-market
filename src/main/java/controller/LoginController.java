@@ -15,9 +15,9 @@ public class LoginController {
     public User login() {
 
         System.out.println("Informe seu o cpf: (somente numeros)");
-        String cpf = sc.next();
+        String cpf = sc.nextLine();
         System.out.println("Informe sua senha:");
-        String password = sc.next();
+        String password = sc.nextLine();
 
         return authService.auth(cpf,password);
     }

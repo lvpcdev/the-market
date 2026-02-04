@@ -2,7 +2,9 @@ package model.entities;
 
 import model.enums.UserType;
 
-public class Product {
+import java.util.Objects;
+
+public class Product implements Comparable<Product>{
 
     private Integer code;
     private String name;
@@ -40,9 +42,25 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Dados do produto: " +
-                "\n\nNome: " + name +
+        return "\nNome: " + name +
                 "\nCódigo: " + code +
                 "\nPreço: " + price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Objects.equals(code, product.code) && Objects.equals(name, product.name) && Objects.equals(price, product.price);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(code, name, price);
+    }
+
+    @Override
+    public int compareTo(Product o) {
+        return name.toUpperCase().compareTo(o.getName().toUpperCase());
     }
 }

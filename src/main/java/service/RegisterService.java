@@ -23,6 +23,7 @@ public class RegisterService {
 
         User user = new User(name,cpf,password, userType);
         userDao.create(user);
+        System.out.println("Conta criada com sucesso");
     }
 
     }

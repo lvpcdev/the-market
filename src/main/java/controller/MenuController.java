@@ -27,7 +27,7 @@ public class MenuController {
                     "\n2)Cadastrar produto" +
                     "\n3)Sair");
 
-            option = sc.nextInt();
+            option = Integer.parseInt(sc.nextLine());
 
             switch (option) {
                 case 1 -> productController.listAllProducts();
@@ -39,19 +39,18 @@ public class MenuController {
 
     private void clientMenu(User user) {
         do {
-
-
             System.out.println("Bem vindo(a) " + user.getName() + " Selecione uma das opções abaixo:" +
                     "\n\n1)Visualizar produtos" +
                     "\n2)Comprar produto" +
                     "\n3)Sair");
 
-            int option = sc.nextInt();
+            option = Integer.parseInt(sc.nextLine());
 
             switch (option) {
                 case 1 -> productController.listAllProducts();
                 case 2 -> buyController.buy(user);
                 case 3 -> System.out.println("Saindo...");
+                default -> System.out.println("Erro: numero digitado inválido");
             }
         } while (option != 3);
     }

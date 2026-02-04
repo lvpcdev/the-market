@@ -4,8 +4,6 @@ import model.entities.User;
 import model.enums.UserType;
 
 import java.io.*;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -37,7 +35,7 @@ public class UserDao {
     public void create(User user) {
         verificator();
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, true))) {
 
             String line = user.getUserType() + "," + user.getName() + "," + user.getCpf() + "," + user.getPassword();
 

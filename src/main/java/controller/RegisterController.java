@@ -16,11 +16,11 @@ public class RegisterController {
         System.out.println("Informe seu o nome:");
         String name = sc.nextLine();
         System.out.println("Informe seu o cpf: (somente numeros)");
-        String cpf = sc.next();
+        String cpf = sc.nextLine();
         System.out.println("Informe sua senha:");
-        String password = sc.next();
+        String password = sc.nextLine();
         System.out.println("Você é funcionário ou cliente do the market? (f/c)");
-        char option = sc.next().charAt(0);
+        char option = sc.nextLine().charAt(0);
         UserType userType = null;
 
         if (String.valueOf(option).equalsIgnoreCase("f")) {

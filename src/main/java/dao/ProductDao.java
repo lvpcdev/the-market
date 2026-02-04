@@ -37,7 +37,7 @@ public class ProductDao {
     public void create(Product product) {
         verificator();
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, true))) {
 
             String line = product.getCode() + "," + product.getName() + "," + product.getPrice();
 
@@ -91,5 +91,10 @@ public class ProductDao {
             System.out.println("Erro: " + e.getMessage());
         }
         return null;
+    }
+
+    public boolean productExists(int code) {
+        return findAll().stream()
+                .anyMatch(p -> p.getCode().equals(code));
     }
 }

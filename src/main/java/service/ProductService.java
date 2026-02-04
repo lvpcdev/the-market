@@ -17,7 +17,10 @@ public class ProductService {
 
         if (product.getPrice() <= 0) {
             throw new RuntimeException("Preço inválido");
+        }
 
+        if (productDao.productExists(product.getCode())) {
+            throw new RuntimeException("Produto já cadastrado");
         }
 
         productDao.create(product);
