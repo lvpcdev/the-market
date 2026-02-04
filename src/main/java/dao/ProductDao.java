@@ -1,7 +1,7 @@
 package dao;
 
 import model.entities.Product;
-import utils.FIleUtils;
+import utils.FileUtils;
 
 
 import java.io.*;
@@ -17,7 +17,7 @@ public class ProductDao {
 
 
     public void create(Product product) {
-        FIleUtils.verificator(dirPath,filePath);
+        FileUtils.verificator(dirPath,filePath);
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, true))) {
 
@@ -33,7 +33,7 @@ public class ProductDao {
     }
 
     public Product read(Integer code) {
-        FIleUtils.verificator(dirPath,filePath);
+        FileUtils.verificator(dirPath,filePath);
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
 
@@ -57,7 +57,7 @@ public class ProductDao {
 
 
     public Set<Product> findAll() {
-        FIleUtils.verificator(dirPath,filePath);
+        FileUtils.verificator(dirPath,filePath);
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
 
@@ -78,7 +78,7 @@ public class ProductDao {
     }
 
     public boolean productExists(int code) {
-        FIleUtils.verificator(dirPath,filePath);
+        FileUtils.verificator(dirPath,filePath);
 
         return findAll().stream()
                 .anyMatch(p -> p.getCode().equals(code));

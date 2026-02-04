@@ -3,7 +3,7 @@ package utils;
 import java.io.File;
 import java.io.IOException;
 
-public class FIleUtils {
+public class FileUtils {
 
     public final static void verificator(String dirPath, String filePath) {
         File directorie = new File(dirPath);

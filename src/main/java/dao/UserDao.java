@@ -2,7 +2,7 @@ package dao;
 
 import model.entities.User;
 import model.enums.UserType;
-import utils.FIleUtils;
+import utils.FileUtils;
 
 import java.io.*;
 import java.util.Set;
@@ -15,7 +15,7 @@ public class UserDao {
 
 
     public void create(User user) {
-        FIleUtils.verificator(dirPath,filePath);
+        FileUtils.verificator(dirPath,filePath);
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, true))) {
 
@@ -31,7 +31,7 @@ public class UserDao {
     }
 
     public User read(String cpf) {
-        FIleUtils.verificator(dirPath,filePath);
+        FileUtils.verificator(dirPath,filePath);
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
 
@@ -54,7 +54,7 @@ public class UserDao {
 
 
     public Set<User> findAll() {
-        FIleUtils.verificator(dirPath,filePath);
+        FileUtils.verificator(dirPath,filePath);
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
 
@@ -75,7 +75,7 @@ public class UserDao {
     }
 
     public boolean userExist(String cpf) {
-        FIleUtils.verificator(dirPath,filePath);
+        FileUtils.verificator(dirPath,filePath);
 
         return findAll().stream()
                 .anyMatch(u -> u.getCpf().equals(cpf));
